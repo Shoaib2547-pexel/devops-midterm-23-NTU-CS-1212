@@ -1,3 +1,4 @@
+
 name: CI Pipeline
 
 on:
@@ -9,13 +10,14 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -29,13 +31,14 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     needs: lint
+    timeout-minutes: 5
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -49,13 +52,14 @@ jobs:
   package:
     runs-on: ubuntu-24.04
     needs: test
+    timeout-minutes: 5
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -66,16 +70,17 @@ jobs:
       - name: Create package
         run: make package
 
-      - name: Verify package exists
+      - name: Verify package
         run: |
           if ! compgen -G "*.tgz" > /dev/null; then
             echo "No .tgz package found!"
             exit 1
           fi
 
-      - name: Upload package artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
         with:
           name: npm-package
           path: "*.tgz"
           if-no-files-found: error
+
