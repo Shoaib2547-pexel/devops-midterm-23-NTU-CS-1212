@@ -1,0 +1,29 @@
+{
+  "name": "devops-midterm-23-ntu-cs-1212",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shoaib2547-pexel/devops-midterm-23-NTU-CS-1212.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shoaib2547-pexel/devops-midterm-23-NTU-CS-1212/issues"
+  },
+  "homepage": "https://github.com/Shoaib2547-pexel/devops-midterm-23-NTU-CS-1212#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0"
+  }
+}
